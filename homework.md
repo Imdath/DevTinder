@@ -21,3 +21,4 @@
 - explore routing and use of ?, +, (), \* in the routes
 - use of regex in routes /a/, /.\*fly$/
 - reading the query params in the routes
+- reading the dynamic routes

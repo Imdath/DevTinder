@@ -26,10 +26,11 @@ const userSchema = new mongoose.Schema(
     },
     gender: {
       type: String,
-      validate(value) {
-        if (!['male', 'female', 'others'].includes(value)) {
-          throw new Error('Gender data is not valid')
-        }
+      validate: {
+        validator(value) {
+          return ['male', 'female', 'others'].includes(value)
+        },
+        message: 'Gender data is not valid',
       },
     },
     photoUrl: {
@@ -42,6 +43,12 @@ const userSchema = new mongoose.Schema(
     },
     skills: {
       type: [String],
+      validate: {
+        validator(array) {
+          return array.length <= 10
+        },
+        message: 'Skills cannot be more than 10',
+      },
     },
   },
   { timestamps: true }

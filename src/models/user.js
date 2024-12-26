@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const validator = require('validator')
 
 const userSchema = new mongoose.Schema(
   {
@@ -15,10 +16,22 @@ const userSchema = new mongoose.Schema(
       unique: true,
       lowercase: true,
       trim: true,
+      validate: {
+        validator(value) {
+          return validator.isEmail(value)
+        },
+        message: 'Email is not valid',
+      },
     },
     password: {
       type: String,
       required: true,
+      validate: {
+        validator(value) {
+          return validator.isStrongPassword(value)
+        },
+        message: 'Enter a strong password',
+      },
     },
     age: {
       type: Number,
@@ -36,6 +49,12 @@ const userSchema = new mongoose.Schema(
     photoUrl: {
       type: String,
       default: 'https://picsum.photos/seed/picsum/200/300',
+      validate: {
+        validator(value) {
+          return validator.isURL(value)
+        },
+        message: 'Invalid Photo URL',
+      },
     },
     about: {
       type: String,

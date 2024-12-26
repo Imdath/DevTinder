@@ -80,10 +80,9 @@ app.patch('/user/:userId', async (req, res) => {
     if (!isUpdateAllowed) {
       throw new Error('Update not allowed')
     }
-    const user = await User.findByIdAndUpdate({ _id: userId }, data, {
+    await User.findByIdAndUpdate({ _id: userId }, data, {
       runValidators: true,
     })
-    console.log(user)
     res.send('User updated successfully')
   } catch (err) {
     res.status(400).send('Update User: ' + err.message)

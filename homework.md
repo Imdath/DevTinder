@@ -72,3 +72,22 @@
 - create password hash using bcrypt.hash and save the user with encrypted password
 - create login API
 - compare passwords and throw errors if email or password is invalid
+
+- install cookie-parser
+- just send a dummy cookie to the user
+- create GET /profile API and check if you get the cookie back
+- in login API, after email and password validation, create a JWT token and send it back to the user in cookies
+- read the cookies inside your profile API and find the logged in user
+- userAuth middleware
+- add the userAuth middleware in profile API and a new sendConnectionRequest API
+- set the expiry of JWT token and cookies to 7 days
+- create userSchema method to getJWT()
+- create userSchema method to validatePassword()
+
+- explore Tinder APIs
+- create a list of all APIs you can think of in DevTinder
+- group multiple routes under respective routers
+- read documentation of express.Router
+- create routes folder for managing auth, profile, request routers
+- create authRouter, profileRouter, requestRouter
+- import these routers in app.js

@@ -29,4 +29,18 @@ const validateEditProfileData = (req) => {
   return isEditAllowed
 }
 
-module.exports = { validateSignUpData, validateEditProfileData }
+const validatePasswordChange = (isPasswordValid, newPassword, oldPassword) => {
+  if (!isPasswordValid) {
+    throw new Error('Please enter the correct old password')
+  } else if (!validator.isStrongPassword(newPassword)) {
+    throw new Error('Enter a strong new password')
+  } else if (oldPassword === newPassword) {
+    throw new Error('Both old and new password cannot be the same')
+  }
+}
+
+module.exports = {
+  validateSignUpData,
+  validateEditProfileData,
+  validatePasswordChange,
+}

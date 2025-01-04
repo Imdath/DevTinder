@@ -41,12 +41,16 @@ const userSchema = new mongoose.Schema(
     },
     gender: {
       type: String,
-      validate: {
-        validator(value) {
-          return ['male', 'female', 'others'].includes(value)
-        },
-        message: 'Gender data is not valid',
+      enum: {
+        values: ['male', 'female', 'others'],
+        message: `{VALUE} is not a valid gender type`,
       },
+      // validate: {
+      //   validator(value) {
+      //     return ['male', 'female', 'others'].includes(value)
+      //   },
+      //   message: 'Gender data is not valid',
+      // },
     },
     photoUrl: {
       type: String,
@@ -97,6 +101,6 @@ userSchema.methods.validatePassword = async function (passwordInputByUser) {
   return isPasswordValid
 }
 
-const userModel = mongoose.model('User', userSchema)
+const UserModel = new mongoose.model('User', userSchema)
 
-module.exports = userModel
+module.exports = UserModel

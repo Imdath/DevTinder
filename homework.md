@@ -108,3 +108,8 @@
 - read the article about coumpound indexes - mongodb
 - read more about the logical queries
 - ALWAYS THINK ABOUT CORNER CASES
+
+- write code with proper validations for POST /request/review/:status/:requestId
+- thought process - POST vs GET
+- read about ref and populate
+- create GET /user/requests/received with all the checks

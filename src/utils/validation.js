@@ -1,7 +1,7 @@
 const validator = require('validator')
 
 const validateSignUpData = (req) => {
-  const { firstName, lastName, emailId, password } = req.body
+  const { firstName, lastName, emailId, password,age,gender,photoUrl,about } = req.body
 
   if (!firstName || !lastName) {
     throw new Error('Name is not valid!')
@@ -9,6 +9,8 @@ const validateSignUpData = (req) => {
     throw new Error('Email is not valid!')
   } else if (!validator.isStrongPassword(password)) {
     throw new Error('Enter a strong password!')
+  }else if(!age || !gender || !validator.isURL(photoUrl) || !about ) {
+    throw new Error('Enter all the details please!')
   }
 }
 

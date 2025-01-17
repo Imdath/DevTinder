@@ -9,7 +9,7 @@ authRouter.post('/signup', async (req, res) => {
     // validation of data
     validateSignUpData(req)
 
-    const { password, firstName, lastName, emailId } = req.body
+    const { password, firstName, lastName, emailId,age,gender,photoUrl,about } = req.body
 
     // Encrypt the password
     const hashedPassword = await bcrypt.hash(password, 10)
@@ -20,10 +20,14 @@ authRouter.post('/signup', async (req, res) => {
       lastName,
       emailId,
       password: hashedPassword,
+      age: Number(age),
+      gender,
+      photoUrl,
+      about
     })
 
     await user.save()
-    res.send('User created successfully')
+    res.json({message: 'User created successfully!'})
   } catch (err) {
     res.status(400).send('ERROR: ' + err.message)
   }

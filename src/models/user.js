@@ -38,9 +38,11 @@ const userSchema = new mongoose.Schema(
     age: {
       type: Number,
       min: 18,
+      required: true,
     },
     gender: {
       type: String,
+      required: true,
       enum: {
         values: ['male', 'female', 'others'],
         message: `{VALUE} is not a valid gender type`,
@@ -54,6 +56,7 @@ const userSchema = new mongoose.Schema(
     },
     photoUrl: {
       type: String,
+      required: true,
       default: 'https://picsum.photos/seed/picsum/200/300',
       validate: {
         validator(value) {
@@ -64,6 +67,7 @@ const userSchema = new mongoose.Schema(
     },
     about: {
       type: String,
+      required: true,
       default: 'This is a default about of the user!',
     },
     skills: {

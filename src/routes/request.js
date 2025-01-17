@@ -70,9 +70,11 @@ requestRouter.post(
 
       const connectionRequest = await ConnectionRequest.findOne({
         _id: requestId,
-        toUserId: loggedInUser._id,
+        toUserId: loggedInUser._id.toString(),
         status: 'interested',
       })
+
+      console.log(requestId,'adcsdacsndcsjn')
 
       if (!connectionRequest) {
         return res
@@ -83,11 +85,13 @@ requestRouter.post(
       connectionRequest.status = status
       const data = await connectionRequest.save()
 
-      res.json({ message: `Connection Request ${status}`, data })
+      res.status(200).json({ message: `Connection Request ${status}`, data })
     } catch (error) {
       res.status(400).send('ERROR: ' + error.message)
     }
   }
 )
+
+
 
 module.exports = requestRouter
